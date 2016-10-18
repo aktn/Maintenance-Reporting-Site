@@ -31,7 +31,3 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 //User Registration Routes
 Route::get('auth/register', 'Auth\AuthController@getReigster');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
-
-Route::controllers([
-	'password' => 'Auth\PasswordController',
-]);

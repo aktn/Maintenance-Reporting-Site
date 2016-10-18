@@ -2,7 +2,7 @@
 
 namespace App\Mailers;
 
-use App\Ticket;
+use App\Issue;
 use Illuminate\Contracts\Mail\Mailer;
 
 class AppMailer{
@@ -14,14 +14,14 @@ class AppMailer{
 	protected $view;
 	protected $data = [];
 
-	public function _construct(Mailer $mailer)
+	public function __construct(Mailer $mailer)
 	{
 		$this->mailer = $mailer;
 	}
 
-	public function sendIssueInformation($user, Issue, $issue)
+	public function sendIssueInformation($user, Issue $issue)
 	{
-		$this->to = 'admin@admin.com'; // admin email here
+		$this->to = $user->email; // admin email here
 		$this->subject = "[Issue ID: $issue->issue_id] $issue->title";
 		$this->view = 'emails.issue_info';
 		$this->data = compact('user','issue');

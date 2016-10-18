@@ -8,6 +8,7 @@ use App\Issue;
 use App\User;
 use App\Http\Requests;
 use App\Category;
+use App\Mailers\AppMailer;
 
 class IssuesController extends Controller
 {
@@ -17,7 +18,7 @@ class IssuesController extends Controller
     	return view('issues.create', compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, AppMailer $mailer)
     {
     	$this->validate($request, [
     		'title' => 'required',
@@ -37,7 +38,7 @@ class IssuesController extends Controller
     	]);
 
     	$issue->save();
-    //	$mailer->sendIssueInformation(Auth::user(), $issue);
+    	$mailer->sendIssueInformation(Auth::user(), $issue);
 
     	return redirect()->back()->with("status","Issue has been added");
     }
