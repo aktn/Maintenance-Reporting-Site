@@ -50,4 +50,12 @@ class IssuesController extends Controller
 
     	return view('issues.user_issues', compact('issues','categories'));
     }
+
+    public function show($issue_id)
+    {	
+    	$issue = Issue::where('issue_id', $issue_id)->firstOrFail();
+
+    	$category = $issue->category;
+    	return view('issues.show', compact('issue', 'category'));
+    }
 }
