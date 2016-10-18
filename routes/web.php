@@ -31,3 +31,7 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 //User Registration Routes
 Route::get('auth/register', 'Auth\AuthController@getReigster');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+//Displaying user's uploaded issues
+Route::get('my_issues', 'IssuesController@userIssues');
+Route::get('issues/{issue_id}', 'IssuesController@show');

@@ -42,4 +42,12 @@ class IssuesController extends Controller
 
     	return redirect()->back()->with("status","Issue has been added");
     }
+
+    public function userIssues()
+    {
+    	$issues = Issue::where('user_id', Auth::user()->id)->paginate(15);
+    	$categories = Category::all();
+
+    	return view('issues.user_issues', compact('issues','categories'));
+    }
 }
