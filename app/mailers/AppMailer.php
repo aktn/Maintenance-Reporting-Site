@@ -29,6 +29,16 @@ class AppMailer{
 		return $this->deliver();
 	}
 
+	public function sendIssueComments($issueOwner, $user, Issue $issue, $comment)
+	{
+		$this->to = $issueOwner->email;
+		$this->subject = "RE: $issue->title(Issue ID:$issue->issue_id)";
+		$this->view = 'emails.issue_comments';
+		$this->data = compact('issueOwner', 'user', 'issue', 'comment');
+
+		return $this->deliver();
+	}
+
 	public function deliver()
 	{
 		$this->mailer->send($this->view, $this->data, function($message){

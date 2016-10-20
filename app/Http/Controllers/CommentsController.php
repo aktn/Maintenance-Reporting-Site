@@ -26,7 +26,7 @@ class CommentsController extends Controller
 
 		if($comment->issue->user->id !== Auth::user()->id)
 		{
-			$mailer->sendTicketComments($comment->issue->user, Auth::user(), $comment->issue, $comment);
+			$mailer->sendIssueComments($comment->issue->user, Auth::user(), $comment->issue, $comment);
 		}
 
 		return redirect()->back()->with("status","Submitted!");
