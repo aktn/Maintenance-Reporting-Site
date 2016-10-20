@@ -54,8 +54,9 @@ class IssuesController extends Controller
     public function show($issue_id)
     {	
     	$issue = Issue::where('issue_id', $issue_id)->firstOrFail();
+    	$comments = $issue->comments;
 
     	$category = $issue->category;
-    	return view('issues.show', compact('issue', 'category'));
+    	return view('issues.show', compact('issue', 'category', 'comments'));
     }
 }

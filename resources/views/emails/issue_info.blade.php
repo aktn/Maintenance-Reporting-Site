@@ -13,5 +13,6 @@
 		<p>Title: {{ $issue->title }}</p>
 		<p>Priority: {{ $issue->priority }}</p>
 		<p>Status: {{ $issue->status }}</p>
+
 	</body>
 </html>

@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\Issue;
+use App\Comment;
+use App\user;
+use App\Mailers\AppMailer;
+use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
@@ -17,7 +21,7 @@ class CommentsController extends Controller
 		$comment = Comment::create([
 			'issue_id' => $request->input('issue_id'),
 			'user_id'  => Auth::user()->id,
-			'commnet'  => $request->input('comment');
+			'comment'  => $request->input('comment'),
 		]);
 
 		if($comment->issue->user->id !== Auth::user()->id)
